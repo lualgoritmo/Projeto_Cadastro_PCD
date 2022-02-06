@@ -1,0 +1,60 @@
+CREATE DATABASE curriculum_pcd;
+USE curriculum_pcd;
+
+CREATE TABLE perfil(
+	id_perfil INT AUTO_INCREMENT,
+	descricao VARCHAR(100),
+	PRIMARY KEY(id_perfil)
+);
+
+CREATE TABLE usuario(
+	id_usuario INT AUTO_INCREMENT,
+	id_perfil INT,
+	email VARCHAR(100)NOT NULL,
+	senha VARCHAR(100)NOT NULL,
+        FOREIGN KEY (id_perfil) 
+        REFERENCES perfil(id_perfil),
+        PRIMARY KEY(id_usuario)
+)ENGINE=INNODB;
+	
+CREATE TABLE curriculo(
+	id_curriculo INT AUTO_INCREMENT,
+	id_usuario INT,
+	nome VARCHAR(100)NOT NULL,
+	data_nascimento DATE NOT NULL,
+	tipo_deficiencia VARCHAR(255),
+	cid_deficiencia VARCHAR(30),
+	descritivo_deficiencia VARCHAR(255),
+	observacoes_acessibilidade VARCHAR(255),
+	estado_civil VARCHAR(100)NOT NULL,
+	nacionalidade VARCHAR(30)NOT NULL,
+	cep VARCHAR(12)NOT NULL,
+	bairro VARCHAR(50),
+	cidade VARCHAR(50),
+	uf CHAR(2),
+	numero_residencia VARCHAR(30),
+	telefone VARCHAR(30),
+	objetivo VARCHAR(100),
+	formacao_academica VARCHAR(255),
+	experiencia_profissional VARCHAR(255),
+	data_inicio DATE,
+	data_final DATE,
+	qualificacoes_atividades_complementares VARCHAR(255),
+	data_conclusao DATE,
+	informacoes_adcionais VARCHAR(255),
+	FOREIGN KEY(id_usuario)
+	REFERENCES usuario (id_usuario),
+	PRIMARY KEY(id_curriculo)
+)ENGINE INNODB;
+
+
+CREATE TABLE categoria(
+	id_categoria INT AUTO_INCREMENT,
+	id_usuario INT,
+	id_curriculo
+	descricaoCategoria VARCHAR(100),
+	imagem_curriculo VARCHAR(255),
+	modelo VARCHAR(255),
+	PRIMARY KEY(id_categoria)
+)ENGINE=INNODB;;
+
